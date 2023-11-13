@@ -9,6 +9,9 @@ class Login:
         for i in event.get():
             if i.type == QUIT:
                 self.quit = True
+            
+            
+
     
     def screen(self):
         self.win.fill((200,200,200))
