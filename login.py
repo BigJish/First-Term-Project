@@ -10,6 +10,11 @@ class Login:
             if i.type == QUIT:
                 self.quit = True
             
+            if i.type == KEYDOWN:
+                if i.key == K_BACKSPACE:
+                    self.text = self.text[:-1]
+                user_text += event.unicode
+            
             
 
     
