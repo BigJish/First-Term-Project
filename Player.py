@@ -57,7 +57,6 @@ class Player(sprite.Sprite):
             
             if k[K_d] or k[K_RIGHT]:
                 self.xMove += 3
-
     
     def move(self):
         self.jump = True
@@ -77,7 +76,6 @@ class Player(sprite.Sprite):
                     if self.xMove > 0:
                         self.hitbox.right = i.hitbox.left
 
-
             if axis == "y":
                 if self.hitbox.colliderect(i.hitbox):
                     if self.yMove > 0:
@@ -87,7 +85,6 @@ class Player(sprite.Sprite):
                     if self.yMove < 0:
                         self.hitbox.top = i.hitbox.bottom
                         self.yMove = 0
-
 
     def draw(self,offset):
         if self.image == self.images[0]:
