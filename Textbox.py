@@ -35,6 +35,9 @@ class TextBox:
             self.active = True
         elif ms[0]:
             self.active = False
+
+    def getText(self):
+        return self.txt
     
     def update(self):
         self.draw()

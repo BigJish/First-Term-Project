@@ -1,7 +1,6 @@
-from pygame import *
+from settings import *
 from random import choice as rc
 from random import randint as ri
-from time import time as t
 
 from Player import * 
 from Block import *
@@ -10,8 +9,6 @@ from Display import *
 from EndScreen import *
 from DropDown import *
 
-init()
-CLOCK = time.Clock()
 WIN = display.set_mode((1080,720))
 
 class MapGen:
@@ -42,7 +39,7 @@ class MapGen:
             new_coord = [x3,y-120*i]
             self.coords.append(new_coord)
 
-class Main:
+class Game:
     def __init__(self):
         self.end = False
         self.blocks = sprite.Group()
@@ -65,7 +62,7 @@ class Main:
         self.finish = Finish(500-self.level*120)
     
     def run(self):
-        
+        init()
         while self.end == False:
             for i in event.get():
                 if i.type == QUIT:
@@ -115,5 +112,3 @@ class Main:
             CLOCK.tick(60)
             display.flip()
 
-main = Main()
-main.run()

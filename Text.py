@@ -1,5 +1,6 @@
 from settings import *
 
+
 class Text:
     def __init__(self, colour = (0,0,0), fontType = None, fontSize = 32):
         self.win = display.get_surface()

@@ -1,11 +1,14 @@
 from settings import *
+
 from Textbox import *
+from Button import *
 
 class Login:
     def __init__(self):
         self.win = display.get_surface()
         self.userTextBox = TextBox(200,250)
         self.passTextBox = TextBox(200,400)
+        self.b = Button(360, 550, "Eneter")
         self.quit = False        
     
     def screen(self):
@@ -24,6 +27,12 @@ class Login:
             self.userTextBox.update()
             self.passTextBox.update()
 
+            if self.b.check() == True and self.userTextBox.txt != "" and self.passTextBox.txt != "":
+                self.quit = True
+            
+            self.b.update()
+
             CLOCK.tick(60)
             display.flip()
         quit()
+        return True
