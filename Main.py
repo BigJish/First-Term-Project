@@ -14,8 +14,7 @@ class Main:
         while self.quit == False:
             events= event.get()
             for i in events:
-                if i.type == QUIT:
-                    self.quit = True
+                if i.type == QUIT:self.quit = True
 
             if self.srcNo == 1:
                 if self.login.run(events):

@@ -48,6 +48,8 @@ class Game:
         self.display = Display()
         self.DropDown = DropDown()
         self.t = t()
+        self.pauseTime = 0
+        self.keydown = False
         
         self.setup()
     
@@ -64,10 +66,17 @@ class Game:
 
         k = key.get_pressed()
 
-        if k[K_ESCAPE]:
-            self.screen = 3
-
         if self.screen == 1:
+
+            if k[K_ESCAPE]:
+                if self.keydown == False:
+                    self.screen = 3
+                    self.pauseTime = t()
+                    self.keydown = True
+            
+            else:
+                self.keydown = False
+
             self.win.fill((0,200,200))
             for i in self.blocks:
                 i.draw(self.offset)
@@ -101,3 +110,11 @@ class Game:
                 self.DropDown = DropDown()
                 self.t = t()
                 self.setup()
+
+            if k[K_ESCAPE]:
+                if self.keydown == False:
+                    self.screen = 1
+                    self.t += t() - self.pauseTime
+                    self.keydown = True
+            else:
+                self.keydown = False

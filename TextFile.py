@@ -3,8 +3,19 @@ from settings import *
 class TextFile:
     def __init__(self):
         f = open("Database.txt","w")
-        dump([], f)
+        # dump([], f)
         f.close()
+    
+    def update(self, username, data, newdata):
+        tempfile = self.read(username)
+        for i in file:
+            if username == "username":
+        f = open("Database.txt","w")
+        
+    
+    def read(self):
+        f = open("Database.txt","r")
+
     
     def newUser(self, name, password):
         tempFile = []
