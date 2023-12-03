@@ -20,10 +20,9 @@ class Main:
                 if self.login.run(events):
                     self.srcNo = 2
                     self.win = display.set_mode((1080,720))
-
                     
             if self.srcNo == 2:
-                self.game.run()
+                self.game.run(self.login.userTextBox.getText())
 
             display.flip()
             CLOCK.tick(60)

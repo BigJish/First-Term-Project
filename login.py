@@ -3,11 +3,13 @@ from settings import *
 from Textbox import *
 from Button import *
 from TextFile import *
+from Text import *
 
 class Login:
     def __init__(self):
         self.win = display.get_surface()
         self.f = TextFile()
+        self.text = Text(fontSize = 24, colour = (200,50,50))
         self.userTextBox = TextBox(200,250)
         self.passTextBox = TextBox(200,400)
         self.b = Button(360, 550, "Eneter")       
@@ -28,6 +30,9 @@ class Login:
         if self.b.check() == True and self.userTextBox.txt != "" and self.passTextBox.txt != "":
             username = self.userTextBox.getText()
             password = self.passTextBox.getText()
-            self.f.newUser(username, password)
-            return True
+            if self.f.newUser(username, password) == False:
+                self.text.render("Username exists password is incorrect")
+                self.text.draw(200, 500)
+            else:
+                return True
         self.b.update()

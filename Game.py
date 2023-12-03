@@ -62,7 +62,7 @@ class Game:
             Block(self.blocks, i[0], i[1])
         self.finish = Finish(500-self.level*120)
     
-    def run(self):
+    def run(self, username):
 
         k = key.get_pressed()
 
@@ -91,12 +91,13 @@ class Game:
             
             if self.player.hitbox.colliderect(self.finish.hitbox):
                 self.screen = 2
-                self.endScreen = EndScreen(self.display.getTime())
+                self.endScreen = EndScreen(self.display.getTime(), username)
             
             self.display.update(str(round(t() - self.t, 2)), self.player.get_JP())
         
         if self.screen == 2:
             self.endScreen.run()
+            self.endScreen.update()
             self.screen = 3
         
         if self.screen == 3:
