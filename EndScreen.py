@@ -7,7 +7,6 @@ class EndScreen:
         self.win = display.get_surface()
         self.f = TextFile()
         self.score = time
-
         self.text = Text(fontSize = 86)
         self.image = image.load("confetti.png").convert_alpha()
         self.text.render("Your time was: "+str(time))

@@ -7,7 +7,7 @@ class DropDown:
         self.b = Button(440, 330, "reset")
 
     def inputs(self):
-        if self.b.check() == True:
+        if self.b.check():
             return "reset"
         
         self.b.update()

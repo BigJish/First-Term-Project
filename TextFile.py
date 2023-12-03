@@ -13,13 +13,19 @@ class TextFile:
                     if i[data] == None:
                         i[data] = newdata
                         dump(tempfile,f)
-                    elif i[data] < newdata:
+                    elif i[data] > newdata:
                         i[data] = newdata
                         dump(tempfile,f)
                 elif data == "previous":
                     i[data] = newdata
                     dump(tempfile,f)
                 f.close()
+
+    def search(self, username, data):
+        tempfile = self.read()
+        for i in tempfile:
+            if i["username"] == username:
+                return i[data]
 
     def read(self):
         f = open("Database.txt","r")

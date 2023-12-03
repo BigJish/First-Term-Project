@@ -12,7 +12,7 @@ class Login:
         self.text = Text(fontSize = 24, colour = (200,50,50))
         self.userTextBox = TextBox(200,250)
         self.passTextBox = TextBox(200,400)
-        self.b = Button(360, 550, "Eneter")       
+        self.b = Button(200, 500, "Enter")       
     
     def screen(self):
         self.win.fill((200,200,200))

@@ -8,6 +8,7 @@ from Finish import *
 from Display import *
 from EndScreen import *
 from DropDown import *
+from TitleScreen import *
 
 
 class MapGen:
@@ -44,7 +45,7 @@ class Game:
         self.blocks = sprite.Group()
         self.offset = 0
         self.level = 20
-        self.screen = 1
+        self.screen = 0
         self.display = Display()
         self.DropDown = DropDown()
         self.t = t()
@@ -54,6 +55,7 @@ class Game:
         self.setup()
     
     def setup(self):
+        self.title = TitleScreen()
         self.player = Player(self.blocks)
         Block(self.blocks, 80, 650, type = "ground")
         self.map = MapGen(self.level)
@@ -65,6 +67,9 @@ class Game:
     def run(self, username):
 
         k = key.get_pressed()
+        if self.screen == 0:
+            if self.title.run(username) == True:
+                self.screen = 1
 
         if self.screen == 1:
 
@@ -96,8 +101,8 @@ class Game:
             self.display.update(str(round(t() - self.t, 2)), self.player.get_JP())
         
         if self.screen == 2:
-            self.endScreen.run()
             self.endScreen.update()
+            self.endScreen.run()
             self.screen = 3
         
         if self.screen == 3:
@@ -106,7 +111,7 @@ class Game:
                 self.blocks = sprite.Group()
                 self.offset = 0
                 self.level = 20
-                self.screen = 1
+                self.screen = 0
                 self.display = Display()
                 self.DropDown = DropDown()
                 self.t = t()
@@ -114,7 +119,7 @@ class Game:
 
             if k[K_ESCAPE]:
                 if self.keydown == False:
-                    self.screen = 1
+                    self.screen = 0
                     self.t += t() - self.pauseTime
                     self.keydown = True
             else:
