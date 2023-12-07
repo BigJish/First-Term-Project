@@ -43,12 +43,13 @@ class Game:
     def __init__(self):
         self.win = display.get_surface()
         self.blocks = sprite.Group()
+        self.display = Display()
+        self.DropDown = DropDown()
+        self.endScreen = EndScreen()
+        self.t = t()
         self.offset = 0
         self.level = 20
         self.screen = 0
-        self.display = Display()
-        self.DropDown = DropDown()
-        self.t = t()
         self.pauseTime = 0
         self.keydown = False
         
@@ -69,6 +70,7 @@ class Game:
         k = key.get_pressed()
         if self.screen == 0:
             if self.title.run(username) == True:
+                self.t = t()
                 self.screen = 1
 
         if self.screen == 1:
@@ -96,12 +98,11 @@ class Game:
             
             if self.player.hitbox.colliderect(self.finish.hitbox):
                 self.screen = 2
-                self.endScreen = EndScreen(self.display.getTime(), username)
             
             self.display.update(str(round(t() - self.t, 2)), self.player.get_JP())
         
         if self.screen == 2:
-            self.endScreen.update()
+            self.endScreen.update(self.display.getTime(), username)
             self.endScreen.run()
             self.screen = 3
         
@@ -114,7 +115,6 @@ class Game:
                 self.screen = 0
                 self.display = Display()
                 self.DropDown = DropDown()
-                self.t = t()
                 self.setup()
 
             if k[K_ESCAPE]:

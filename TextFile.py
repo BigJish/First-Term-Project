@@ -4,22 +4,22 @@ class TextFile:
     def __init__(self):
         pass
     
-    def update(self, username, data, newdata):
+    def update(self, username, newdata):
         tempfile = self.read()
+        highscore = False
         for i in tempfile:
-            if username == i["username"]:
+            if i["username"] == username:
+                if i["highscore"] == None:
+                    i["highscore"] = newdata
+                    highscore = True
+                elif i["highscore"] > newdata:
+                    i["highscore"] = newdata
+                    highscore = True
+                i["previous"] = newdata
                 f = open("Database.txt","w")
-                if data == "highscore": 
-                    if i[data] == None:
-                        i[data] = newdata
-                        dump(tempfile,f)
-                    elif i[data] > newdata:
-                        i[data] = newdata
-                        dump(tempfile,f)
-                elif data == "previous":
-                    i[data] = newdata
-                    dump(tempfile,f)
+                dump(tempfile,f)
                 f.close()
+                return highscore
 
     def search(self, username, data):
         tempfile = self.read()
