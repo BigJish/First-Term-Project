@@ -50,7 +50,10 @@ class TextFile:
                     return False
                 
         if found == False:
-            self.add(username, password)
+            try:
+                self.add(username, password)
+            except:
+                print("There is an error with your username or password\n please try again")
 
     def newUser(self, username, password):
         check = self.check(username, password)
